@@ -1,4 +1,5 @@
-import { PrismaClient } from "@/app/generated/prisma";
+import { PrismaClient } from "@/generated/prisma";
+import { normalizeProductImage } from "@/data/products";
 
 const prisma = new PrismaClient();
 
@@ -505,7 +506,9 @@ async function main() {
 
   console.log("Seeding database...");
   await Promise.all(
-    products.map((product) => prisma.product.create({ data: product })),
+    products.map((product) =>
+      prisma.product.create({ data: normalizeProductImage(product) })
+    )
   );
 
   console.log("Seeding complete.");

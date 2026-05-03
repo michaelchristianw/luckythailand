@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import prisma from "../../../../../lib/prisma";
+import { fallbackProducts, normalizeProductImage } from "@/data/products";
+import prisma from "@/lib/prisma";
 
 type ProductPageProps = {
   params: Promise<{
@@ -9,21 +10,53 @@ type ProductPageProps = {
   }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug, locale } = await params;
 
   // Find product whose imageurl ends with the slug
-  const product = await prisma.product.findFirst({
-    where: {
-      OR: [
-        { imageurl: { endsWith: `/${slug}` } },
-        { imageurl: { endsWith: `/${slug}.png` } },
-        { imageurl: { endsWith: `/${slug}.jpg` } },
-        { imageurl: { endsWith: `/${slug}.jpeg` } },
-        { imageurl: { endsWith: `/${slug}.webp` } },
-      ],
-    },
-  });
+  const dbProduct = await prisma.product
+    .findFirst({
+      where: {
+        OR: [
+          { imageurl: { endsWith: `/${slug}` } },
+          { imageurl: { endsWith: `/${slug}.png` } },
+          { imageurl: { endsWith: `/${slug}.jpg` } },
+          { imageurl: { endsWith: `/${slug}.jpeg` } },
+          { imageurl: { endsWith: `/${slug}.webp` } },
+        ],
+      },
+    })
+    .catch((error) => {
+      console.error("Failed to fetch product:", error);
+      return null;
+    });
+
+  const product =
+    (dbProduct ? normalizeProductImage(dbProduct) : null) ??
+    (await prisma.product
+      .findFirst({
+        where: {
+          OR: [
+            { imageurl: { endsWith: `/${slug.replace(/-/g, "")}` } },
+            { imageurl: { endsWith: `/${slug.replace(/-/g, "")}.png` } },
+          ],
+        },
+      })
+      .catch((error) => {
+        console.error("Failed to fetch product:", error);
+        return null;
+      })
+      .then((item) => (item ? normalizeProductImage(item) : null))) ??
+    fallbackProducts.find((item) => {
+      const imageSlug = item.imageurl
+        .split("/")
+        .pop()
+        ?.replace(/\.(png|jpg|jpeg|webp)$/i, "");
+
+      return imageSlug === slug;
+    });
 
   if (!product) notFound();
 
