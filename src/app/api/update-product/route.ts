@@ -1,16 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { withAuth, type AuthenticatedRequest } from "@/lib/auth-middleware";
 import prisma from "@/lib/prisma";
+import { readJsonBody, validateUpdateProduct } from "@/lib/product-validation";
 
 export const runtime = "nodejs";
 
-export async function PUT(req: NextRequest) {
+async function updateProductHandler(req: AuthenticatedRequest) {
   try {
-    const body = await req.json();
-    const { id, ...data } = body;
+    const body = await readJsonBody(req);
+    if (!body) {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    }
+
+    const validation = validateUpdateProduct(body);
+    if (validation.error) return validation.error;
 
     const updatedProduct = await prisma.product.update({
-      where: { id: Number(id) },
-      data,
+      where: { id: validation.id },
+      data: validation.data,
     });
 
     return NextResponse.json(updatedProduct, { status: 200 });
@@ -22,3 +29,5 @@ export async function PUT(req: NextRequest) {
     );
   }
 }
+
+export const PUT = withAuth(updateProductHandler, { requireAdmin: true });

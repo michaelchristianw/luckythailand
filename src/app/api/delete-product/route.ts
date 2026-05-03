@@ -1,15 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { withAuth, type AuthenticatedRequest } from "@/lib/auth-middleware";
 import prisma from "@/lib/prisma";
+import { parseProductId, readJsonBody } from "@/lib/product-validation";
 
 export const runtime = "nodejs";
 
-export async function DELETE(req: NextRequest) {
+async function deleteProductHandler(req: AuthenticatedRequest) {
   try {
-    const body = await req.json();
-    const { id } = body;
+    const body = await readJsonBody(req);
+    const id = body ? parseProductId(body.id) : null;
+    if (!id) {
+      return NextResponse.json(
+        { error: "A valid product id is required" },
+        { status: 400 }
+      );
+    }
 
     const deletedProduct = await prisma.product.delete({
-      where: { id: Number(id) },
+      where: { id },
     });
 
     return NextResponse.json(deletedProduct, { status: 200 });
@@ -21,3 +29,5 @@ export async function DELETE(req: NextRequest) {
     );
   }
 }
+
+export const DELETE = withAuth(deleteProductHandler, { requireAdmin: true });

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken, type JWTPayload } from "./jwt";
+import { AuthConfigurationError, verifyToken, type JWTPayload } from "./jwt";
 
 export type AuthenticatedRequest = NextRequest & {
   user: JWTPayload;
@@ -25,7 +25,21 @@ export function withAuth(
     }
 
     const token = authHeader.split(" ")[1];
-    const payload = verifyToken(token);
+    let payload: JWTPayload | null;
+
+    try {
+      payload = verifyToken(token);
+    } catch (error) {
+      if (error instanceof AuthConfigurationError) {
+        console.error(error.message);
+        return NextResponse.json(
+          { error: "Authentication is not configured" },
+          { status: 500 }
+        );
+      }
+
+      payload = null;
+    }
 
     if (!payload) {
       return NextResponse.json(
