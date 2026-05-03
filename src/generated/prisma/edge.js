@@ -146,6 +146,10 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -153,7 +157,8 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.6.0",
@@ -171,8 +176,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Product {\n  id          Int     @id @default(autoincrement())\n  category    String\n  name        String\n  engname     String?\n  price       Float\n  imageurl    String\n  size        String?\n  quantity    Int?\n  volume      Int?\n  dimensions  String?\n  unit        String?\n  variant     String?\n  description String?\n}\n",
-  "inlineSchemaHash": "9e2eccbeeb4649fcefed237a45509510530ffb46e33dfb3a6338a215522201ce",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Product {\n  id          Int     @id @default(autoincrement())\n  category    String\n  name        String\n  engname     String?\n  price       Float\n  imageurl    String\n  size        String?\n  quantity    Int?\n  volume      Int?\n  dimensions  String?\n  unit        String?\n  variant     String?\n  description String?\n}\n",
+  "inlineSchemaHash": "2fb676a946341e604efdc40ae8814ca08bb00bca383b9ad3094332d00b623538",
   "copyEngine": true
 }
 config.dirname = '/'
