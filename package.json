@@ -12,6 +12,7 @@
     "format:write": "prettier . --write",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint && npm run format",
+    "auth:token": "node scripts/generate-admin-token.mjs",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy"
   },

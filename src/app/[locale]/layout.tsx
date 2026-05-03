@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
@@ -31,7 +31,7 @@ export default async function RootLayout({
   let messages;
   try {
     messages = (await import(`../../../messages/${locale}.json`)).default;
-  } catch (error) {
+  } catch {
     notFound();
   }
 
