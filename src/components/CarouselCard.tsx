@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { getAssetUrl } from "@/lib/blob-images";
 
 const cards = [
   {
@@ -88,7 +89,7 @@ export const CarouselCard = () => {
                   <Image
                     width={400}
                     height={600}
-                    src={card.image}
+                    src={getAssetUrl(card.image)}
                     alt={card.title}
                     className="h-40 md:h-80 w-full object-contain rounded flex-shrink-0"
                   />

@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { getAssetUrl } from "@/lib/blob-images";
 
 type CategoryCardProps = {
   title: string;
@@ -15,7 +16,7 @@ export const CategoryCard = ({ title, desc, imageurl }: CategoryCardProps) => {
         <div className="card shadow-sm rounded-xl hover:scale-105 transition-transform duration-300 ease-in-out">
           <figure className="rounded h-60">
             <img
-              src={imageurl}
+              src={getAssetUrl(imageurl)}
               alt={title}
               className="w-full h-full object-cover"
             />

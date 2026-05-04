@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { getAssetUrl } from "@/lib/blob-images";
 
 export const NewProducts = () => {
   const t = useTranslations("HomePage");
@@ -18,7 +19,9 @@ export const NewProducts = () => {
               <div className="card bg-base-100 w-72 md:w-90 shadow-sm">
                 <figure>
                   <img
-                    src="/detergent/detergent-blossomkiss-600.png"
+                    src={getAssetUrl(
+                      "/detergent/detergent-blossomkiss-600.png"
+                    )}
                     alt="Detergent"
                     className="w-full h-40 object-contain"
                   />
@@ -38,7 +41,7 @@ export const NewProducts = () => {
               <div className="card bg-base-100 w-72 md:w-90 shadow-sm">
                 <figure>
                   <img
-                    src="/detergent/detergent-floralkiss-600.png"
+                    src={getAssetUrl("/detergent/detergent-floralkiss-600.png")}
                     alt="Shoes"
                     className="w-full h-40 object-contain"
                   />
@@ -58,7 +61,7 @@ export const NewProducts = () => {
               <div className="card bg-base-100 w-72 md:w-90 shadow-sm">
                 <figure>
                   <img
-                    src="/detergent/detergent-pinkmirage-600.png"
+                    src={getAssetUrl("/detergent/detergent-pinkmirage-600.png")}
                     alt="Shoes"
                     className="w-full h-40 object-contain"
                   />

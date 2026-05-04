@@ -9,6 +9,7 @@ import { useRouter } from "@/i18n/navigation";
 import * as motion from "motion/react-client";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { getAssetUrl } from "@/lib/blob-images";
 
 export const HomePage = () => {
   const router = useRouter();
@@ -47,7 +48,7 @@ export const HomePage = () => {
           <div className="relative w-full max-w-xl h-full">
             <Image
               fill
-              src="/homepageBanner.png"
+              src={getAssetUrl("/homepageBanner.png")}
               alt="homepage banner"
               className="object-contain"
             />
@@ -70,12 +71,12 @@ export const HomePage = () => {
           <CategoryCard
             title="Lucky Clean"
             desc={t("cleanText")}
-            imageurl="/luckycleanBanner.png"
+            imageurl={getAssetUrl("/luckycleanBanner.png")}
           />
           <CategoryCard
             title="Lucky Care"
             desc={t("careText")}
-            imageurl="/luckycareBanner.png"
+            imageurl={getAssetUrl("/luckycareBanner.png")}
           />
         </div>
       </motion.div>

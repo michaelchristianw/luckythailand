@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { getAssetUrl } from "@/lib/blob-images";
 
 export const Footer = () => {
   const t = useTranslations("Footer");
@@ -26,13 +27,18 @@ export const Footer = () => {
         <h6 className="footer-title text-white opacity-100">{t("social")}</h6>
         <div className="grid grid-flow-col gap-4">
           <a>
-            <img width="28" height="28" src="/shopee_white.png" alt="shopee" />
+            <img
+              width="28"
+              height="28"
+              src={getAssetUrl("/shopee_white.png")}
+              alt="shopee"
+            />
           </a>
           <a>
             <img
               width="28"
               height="28"
-              src="/tiktok_white.png"
+              src={getAssetUrl("/tiktok_white.png")}
               alt="tiktok--v1"
             />
           </a>
@@ -40,7 +46,7 @@ export const Footer = () => {
             <img
               width="28"
               height="28"
-              src="/instagram_white.png"
+              src={getAssetUrl("/instagram_white.png")}
               alt="instagram-new"
             />
           </a>

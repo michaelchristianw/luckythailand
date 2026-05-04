@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { getAssetUrl } from "@/lib/blob-images";
 
 type MissionProps = {
   colorMode: "light" | "dark"; // restrict to valid values
@@ -36,7 +37,7 @@ export const Mission = ({ colorMode }: MissionProps) => {
         {[...Array(4)].map((_, i) => (
           <img
             key={i}
-            src={`/mission${i + 1}.png`}
+            src={getAssetUrl(`/mission${i + 1}.png`)}
             alt=""
             className="w-full rounded-xl object-cover"
           />
@@ -60,7 +61,7 @@ export const Mission = ({ colorMode }: MissionProps) => {
         </div>
         <div className="w-full md:w-1/2">
           <img
-            src="/vision.png"
+            src={getAssetUrl("/vision.png")}
             alt=""
             className="w-full h-60 md:h-80 object-cover rounded-2xl"
           />

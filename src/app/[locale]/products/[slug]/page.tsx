@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { fallbackProducts, normalizeProductImage } from "@/data/products";
 import prisma from "@/lib/prisma";
+import { getProductSlugFromImageUrl } from "@/lib/blob-images";
 
 type ProductPageProps = {
   params: Promise<{
@@ -49,14 +50,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
         return null;
       })
       .then((item) => (item ? normalizeProductImage(item) : null))) ??
-    fallbackProducts.find((item) => {
-      const imageSlug = item.imageurl
-        .split("/")
-        .pop()
-        ?.replace(/\.(png|jpg|jpeg|webp)$/i, "");
-
-      return imageSlug === slug;
-    });
+    fallbackProducts
+      .map(normalizeProductImage)
+      .find((item) => getProductSlugFromImageUrl(item.imageurl) === slug);
 
   if (!product) notFound();
 

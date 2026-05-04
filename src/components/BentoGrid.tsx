@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { getAssetUrl } from "@/lib/blob-images";
 
 export const BentoGrid = () => {
   const t = useTranslations("AboutPage");
@@ -21,42 +22,42 @@ export const BentoGrid = () => {
               <div className="grid grid-cols-2 grid-rows-3 gap-4 items-center justify-items-center my-10 md:my-0">
                 <div>
                   <img
-                    src="/partners/jiffy.png"
+                    src={getAssetUrl("/partners/jiffy.png")}
                     alt=""
                     className="w-32 h-32 object-contain"
                   />
                 </div>
                 <div>
                   <img
-                    src="/partners/pt.png"
+                    src={getAssetUrl("/partners/pt.png")}
                     alt=""
                     className="w-32 h-32 object-contain"
                   />
                 </div>
                 <div className="row-start-2">
                   <img
-                    src="/partners/watson.png"
+                    src={getAssetUrl("/partners/watson.png")}
                     alt=""
                     className="w-36 h-36 object-contain"
                   />
                 </div>
                 <div className="row-start-2">
                   <img
-                    src="/partners/makro.png"
+                    src={getAssetUrl("/partners/makro.png")}
                     alt=""
                     className="object-contain"
                   />
                 </div>
                 <div className="row-start-3">
                   <img
-                    src="/partners/cj.png"
+                    src={getAssetUrl("/partners/cj.png")}
                     alt=""
                     className="w-32 h-32 object-contain"
                   />
                 </div>
                 <div className="row-start-3">
                   <img
-                    src="/partners/lawson.png"
+                    src={getAssetUrl("/partners/lawson.png")}
                     alt=""
                     className="w-32 h-32 object-contain"
                   />
@@ -80,7 +81,7 @@ export const BentoGrid = () => {
               <div className="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
                 <img
                   className="w-40 max-lg:max-w-xs"
-                  src="/quality.png"
+                  src={getAssetUrl("/quality.png")}
                   alt=""
                 />
               </div>
@@ -101,7 +102,7 @@ export const BentoGrid = () => {
               <div className="@container flex flex-1 items-center justify-center max-lg:py-6 lg:pb-2">
                 <img
                   className="w-40 max-lg:max-w-xs"
-                  src="/bioearth.png"
+                  src={getAssetUrl("/bioearth.png")}
                   alt=""
                 />
               </div>
@@ -120,8 +121,8 @@ export const BentoGrid = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-3 p-10">
-                <img src="/luckycare.jpg" alt="" />
-                <img src="/luckyclean.jpg" alt="" />
+                <img src={getAssetUrl("/luckycare.jpg")} alt="" />
+                <img src={getAssetUrl("/luckyclean.jpg")} alt="" />
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
