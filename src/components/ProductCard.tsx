@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getAssetUrl } from "@/lib/blob-images";
 
 type ProductCardProps = {
   title: string;
@@ -19,7 +20,7 @@ export const ProductCard = ({
         <Image
           width={400}
           height={600}
-          src={imageurl}
+          src={getAssetUrl(imageurl)}
           alt={title}
           className="w-full h-[80%] object-contain transition-all duration-300 group-hover:blur-sm"
         />

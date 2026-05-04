@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { getAssetUrl } from "@/lib/blob-images";
 
 export const PartnerSection = () => {
   const t = useTranslations("HomePage");
@@ -10,22 +11,22 @@ export const PartnerSection = () => {
 
         <div className="w-full grid grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1 gap-10 items-center place-items-center">
           <div className="">
-            <img src="/partners/watson.png" alt="" />
+            <img src={getAssetUrl("/partners/watson.png")} alt="" />
           </div>
           <div className="">
-            <img src="/partners/makro.png" alt="" />
+            <img src={getAssetUrl("/partners/makro.png")} alt="" />
           </div>
           <div className="">
-            <img src="/partners/lawson.png" alt="" />
+            <img src={getAssetUrl("/partners/lawson.png")} alt="" />
           </div>
           <div className="size-20 md:size-28">
-            <img src="/partners/cj.png" alt="" />
+            <img src={getAssetUrl("/partners/cj.png")} alt="" />
           </div>
           <div className="size-20 md:size-28">
-            <img src="/partners/pt.png" alt="" />
+            <img src={getAssetUrl("/partners/pt.png")} alt="" />
           </div>
           <div className="size-20 md:size-28">
-            <img src="/partners/jiffy.png" alt="" />
+            <img src={getAssetUrl("/partners/jiffy.png")} alt="" />
           </div>
         </div>
 

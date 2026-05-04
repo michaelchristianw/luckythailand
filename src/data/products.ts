@@ -1,3 +1,5 @@
+import { getAssetUrl } from "@/lib/blob-images";
+
 export type Product = {
   id: number;
   category: string;
@@ -53,7 +55,7 @@ const legacyImageUrlMap: Record<string, string> = {
 };
 
 export function normalizeProductImageUrl(imageurl: string) {
-  return legacyImageUrlMap[imageurl] ?? imageurl;
+  return getAssetUrl(legacyImageUrlMap[imageurl] ?? imageurl);
 }
 
 export function normalizeProductImage<T extends { imageurl: string }>(

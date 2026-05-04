@@ -13,6 +13,10 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint && npm run format",
     "auth:token": "node scripts/generate-admin-token.mjs",
+    "blob:upload": "node scripts/upload-public-images-to-blob.mjs",
+    "blob:upload:dry-run": "node scripts/upload-public-images-to-blob.mjs --dry-run",
+    "blob:migrate-products": "tsx scripts/migrate-product-images-to-blob.ts",
+    "blob:migrate-products:write": "tsx scripts/migrate-product-images-to-blob.ts --write",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy"
   },
@@ -22,6 +26,7 @@
   "dependencies": {
     "@prisma/client": "^6.6.0",
     "@prisma/extension-accelerate": "^1.3.0",
+    "@vercel/blob": "^2.3.3",
     "country-flag-icons": "^1.6.4",
     "flag-icons": "^7.5.0",
     "i18next": "^25.3.0",
