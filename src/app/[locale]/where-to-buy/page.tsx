@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-// Replace with your Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
 
 interface Store {
@@ -20,6 +20,7 @@ interface StoreWithDistance extends Store {
 }
 
 export default function StoreLocator() {
+  const t = useTranslations("StoreLocator");
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
@@ -241,7 +242,7 @@ export default function StoreLocator() {
 
   return (
     <div className="flex h-full w-full min-h-screen flex-col p-5 pt-12 xl:p-20 ">
-      <h1 className="font-semibold text-3xl py-10">Store Locator</h1>
+      <h1 className="font-semibold text-3xl py-10">{t("title")}</h1>
 
       <div className="flex flex-col-reverse xl:flex-row gap-5 xl:gap-0 w-full xl:flex-1 min-h-0">
         {/* Sidebar */}
@@ -255,7 +256,7 @@ export default function StoreLocator() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  placeholder="Enter your location..."
+                  placeholder={t("locationPlaceholder")}
                   className="flex-1 rounded-md px-3 py-2 text-sm outline-none"
                 />
               </div>
@@ -265,14 +266,14 @@ export default function StoreLocator() {
                 disabled={isSearching}
                 className=" bg-pink-700 px-5 py-2 text-sm font-medium text-white hover:bg-pink-800 hover:cursor-pointer active:bg-pink-900 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isSearching ? "Searching..." : "Search"}
+                {isSearching ? t("searching"): t("search")}
               </button>
             </div>
           </div>
           {/* Store List */}
           <div className="xl:pr-4">
             <h3 className="mb-4 text-base font-semibold text-gray-600">
-              {stores.length} Stores Near You
+              {stores.length} {t("nearYou")}
             </h3>
             <div className="flex flex-col gap-3">
               {stores.map((store) => (

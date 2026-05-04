@@ -14,12 +14,13 @@
     "bannerTitle2": "Prices You",
     "trust": "Trust",
     "love": "Love",
-    "bannerDesc": "We make everyday essentials that are simple, safe, and designed to fit your lifestyle. Clean living starts with quality you can trust — delivered with a lucky touch.",
+    "bannerDesc": "We make everyday essentials that are simple, safe, and designed to fit your lifestyle. Clean living starts with quality you can trust and delivered with a lucky touch.",
     "findProduct": "Find Our Products At",
     "new": "New",
     "products": "Products",
     "newProductDesc": "Our top daily essentials—trusted by families every day. From gentle soaps to reliable detergents and soft tissues, these latest products make everyday life cleaner, simpler, and more comfortable.",
-    "reviewTitle": "What Our Customers Are Saying"
+    "reviewTitle": "What Our Customers Are Saying",
+    "findStore": "Find a Store Near You"
   },
   "AboutPage": {
     "weare": "Clean and Care Begin with",
@@ -67,5 +68,12 @@
     "faq": "FAQ",
     "toc": "Terms of Service",
     "social": "Social"
+  },
+  "StoreLocator": {
+    "title": "Store Locator",
+    "locationPlaceholder": "Enter your location...",
+    "nearYou": "Stores Near You",
+    "search": "Search",
+    "searching": "Searching"
   }
 }

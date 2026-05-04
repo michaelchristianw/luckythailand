@@ -91,9 +91,6 @@ export const ProductPages = () => {
     <div className="w-full min-h-screen flex pt-14">
       <div className="flex flex-col w-full py-10 px-5 md:px-10 gap-10">
         <div className="flex justify-end">
-          {/* <h1 className="text-3xl p-3 font-bold capitalize flex-1 hidden md:flex">
-              {allCategories[category] || category}
-            </h1> */}
           <PopupSidebar category={category} setCategory={setCategory} />
           <label className="flex items-center border-b gap-3 p-2 w-1/2 md:w-1/4">
             <svg
@@ -125,7 +122,7 @@ export const ProductPages = () => {
         <div className="flex gap-10 w-full">
           <ul className="list bg-base-100 md:min-w-1/5 hidden md:flex md:pl-4">
             <li className="tracking-wide text-red-700 text-xl pb-6">
-              Product Categories
+              {t("products")}
             </li>
 
             {Object.keys(allCategories).map((key) => (

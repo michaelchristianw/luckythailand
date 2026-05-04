@@ -34,7 +34,7 @@ export const PartnerSection = () => {
           className="btn font-semibold py-6 px-8 hover:cursor-pointer bg-red-800 text-white border-none"
           href="/where-to-buy"
         >
-          Find A Store Near You
+          {t("findStore")}
         </Link>
       </div>
     </div>
